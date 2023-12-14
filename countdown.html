@@ -4,51 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ff0000; /* Set initial background color to red */
-            transition: background-color 0.5s ease;
-        }
-
-        #countdown-container {
-            text-align: center;
-            color: #ffffff; /* Set text color to white */
-        }
-
-        #countdown {
-            font-size: 48px;
-            color: #ffffff; /* Set countdown text color to white */
-            margin-bottom: 20px;
-        }
-
-        input {
-            font-size: 16px;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ffffff; /* Set input border color to white */
-            border-radius: 5px;
-            outline: none;
-        }
-
-        button {
-            font-size: 16px;
-            padding: 10px 20px;
-            background-color: #ffffff; /* Set button background color to white */
-            color: #ff0000; /* Set button text color to red */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            outline: none;
-            margin-right: 10px;
-        }
-    </style>
-    <title>Professional Countdown Timer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+   
+    <title>Christmas Countdown Timer</title>
 </head>
 <body>
 
@@ -56,15 +16,32 @@
     <div id="countdown">00:00</div>
     <div>
         <input type="number" id="minutesInput" placeholder="Enter duration (minutes)" />
+        <br>
+        <br>
         <input type="number" id="secondsInput" placeholder="Enter duration (seconds)" />
+        <br>
+        <br>
     </div>
     <button onclick="startCountdown()">Start Countdown</button>
     <button onclick="pauseCountdown()">Pause Countdown</button>
     <button onclick="continueCountdown()">Continue Countdown</button>
+    <br>
     <button onclick="resetCountdown()">Reset</button>
 </div>
+<div id="gif-container">
+    <img id="gif" src="christmas-2632.gif" alt="GIF">
 
-<audio id="jingle" src="C:\Users\jamin\Downloads\we-wish-you-a-merry-christmas-xmas-background-short-music-30-second-178228.mp3"></audio>
+</div>
+
+<div id="modal">
+    <h2>Congratulations!</h2>
+    <p>Your countdown has reached 0.</p>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+<!-- Modal overlay -->
+<div id="modal-overlay"></div>
+<audio id="jingle" src="we-wish-you-a-merry-christmas-xmas-background-short-music-30-second-178228.mp3"></audio>
 
 <script>
     var countdownInterval;
@@ -96,6 +73,8 @@
                     timerElement.textContent = "00:00";
                     flashColors();
                     playJingle();
+                    displayGIF();
+                    displayModal();
                 }
             }
         }, 1000); // Update every 1 second
@@ -136,6 +115,25 @@
         var jingle = document.getElementById('jingle');
         jingle.play();
     }
+
+    function displayModal() {
+        var modal = document.getElementById('modal');
+        var modalOverlay = document.getElementById('modal-overlay');
+
+        // Show the modal and overlay
+        modal.style.display = 'block';
+        modalOverlay.style.display = 'block';
+    }
+
+    function closeModal() {
+        var modal = document.getElementById('modal');
+        var modalOverlay = document.getElementById('modal-overlay');
+
+        // Hide the modal and overlay
+        modal.style.display = 'none';
+        modalOverlay.style.display = 'none';
+    }
+
 </script>
 
 </body>

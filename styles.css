@@ -1,0 +1,103 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #4CAF50, #ff0000); /* Gradient background */
+    transition: background 0.5s ease;
+}
+
+#countdown-container {
+    text-align: center;
+    color: #ffffff; /* Set text color to white */
+    margin-top: 50px;
+}
+
+#countdown {
+    font-size: 48px;
+    color: #ffffff; /* Set countdown text color to white */
+    margin-bottom: 120px;
+}
+
+input {
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 70px;
+    border: 1px solid #ffffff; /* Set input border color to white */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease; /* Add transition effect to input border color */
+}
+
+input:focus {
+    border-color: #3498db; /* Set input border color on focus to a shade of blue */
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Set button background color to white */
+    color: #ff0000; /* Set button text color to red */
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    outline: none;
+    margin-right: 70px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect to button */
+}
+
+button:hover {
+    background-color: #3498db; /* button background color on hover to a shade of blue */
+    color: #ffffff; /*  button text color on hover to white */
+}
+
+#gif-container {
+    display: none; /* Initially hide the GIF container */
+}
+
+#gif {
+    max-width: 100%; /* Ensure the GIF doesn't exceed its container width */
+}
+
+/* Modal styles */
+#modal {
+    display: none; /* Initially hide the modal */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#modal-overlay {
+    display: none; /* Initially hide the modal overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#modal h2 {
+    color: #ff0000;
+}
+
+#modal p {
+    color: #000;
+}
+
+#modal button {
+    padding: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
