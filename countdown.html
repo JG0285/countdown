@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ff0000; /* Set initial background color to red */
+            transition: background-color 0.5s ease;
+        }
+
+        #countdown-container {
+            text-align: center;
+            color: #ffffff; /* Set text color to white */
+        }
+
+        #countdown {
+            font-size: 48px;
+            color: #ffffff; /* Set countdown text color to white */
+            margin-bottom: 20px;
+        }
+
+        input {
+            font-size: 16px;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ffffff; /* Set input border color to white */
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #ffffff; /* Set button background color to white */
+            color: #ff0000; /* Set button text color to red */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px;
+        }
+    </style>
+    <title>Professional Countdown Timer</title>
+</head>
+<body>
+
+<div id="countdown-container">
+    <div id="countdown">00:00</div>
+    <div>
+        <input type="number" id="minutesInput" placeholder="Enter duration (minutes)" />
+        <input type="number" id="secondsInput" placeholder="Enter duration (seconds)" />
+    </div>
+    <button onclick="startCountdown()">Start Countdown</button>
+    <button onclick="pauseCountdown()">Pause Countdown</button>
+    <button onclick="continueCountdown()">Continue Countdown</button>
+    <button onclick="resetCountdown()">Reset</button>
+</div>
+
+<audio id="jingle" src="C:\Users\jamin\Downloads\we-wish-you-a-merry-christmas-xmas-background-short-music-30-second-178228.mp3"></audio>
+
+<script>
+    var countdownInterval;
+    var totalSeconds;
+    var isPaused = false;
+
+    function startCountdown() {
+        var timerElement = document.getElementById('countdown');
+        var minutesInput = document.getElementById('minutesInput');
+        var secondsInput = document.getElementById('secondsInput');
+
+        var minutes = parseInt(minutesInput.value) || 0;
+        var seconds = parseInt(secondsInput.value) || 0;
+
+        totalSeconds = minutes * 60 + seconds;
+        isPaused = false;
+
+        countdownInterval = setInterval(function () {
+            if (!isPaused) {
+                var displayMinutes = Math.floor(totalSeconds / 60);
+                var displaySeconds = totalSeconds % 60;
+
+                // Display the remaining time
+                timerElement.textContent = (displayMinutes < 10 ? '0' : '') + displayMinutes + ':' + (displaySeconds < 10 ? '0' : '') + displaySeconds;
+
+                // Check if the countdown is complete
+                if (--totalSeconds < 0) {
+                    clearInterval(countdownInterval);
+                    timerElement.textContent = "00:00";
+                    flashColors();
+                    playJingle();
+                }
+            }
+        }, 1000); // Update every 1 second
+    }
+
+    function pauseCountdown() {
+        isPaused = true;
+    }
+
+    function continueCountdown() {
+        isPaused = false;
+    }
+
+    function resetCountdown() {
+        clearInterval(countdownInterval);
+        document.getElementById('countdown').textContent = "00:00";
+        isPaused = false;
+    }
+
+    function flashColors() {
+        var bodyElement = document.body;
+        var flashDuration = 5000; // 5 seconds
+
+        var flashInterval = setInterval(function () {
+            bodyElement.style.backgroundColor = "#00ff00"; // Set background color to green
+            setTimeout(function () {
+                bodyElement.style.backgroundColor = "#ff0000"; // Set background color back to red after a delay
+            }, 500);
+        }, 1000); // Flash every 1 second
+
+        // Stop flashing after the specified duration
+        setTimeout(function () {
+            clearInterval(flashInterval);
+        }, flashDuration);
+    }
+
+    function playJingle() {
+        var jingle = document.getElementById('jingle');
+        jingle.play();
+    }
+</script>
+
+</body>
+</html>
